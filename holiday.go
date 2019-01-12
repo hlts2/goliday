@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Holiday represents holiday information.
+// Holiday holids holiday information.
 type Holiday interface {
 	// Year of holiday.
 	Year() int
