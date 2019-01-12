@@ -32,7 +32,7 @@ type Holiday interface {
 	NameEn() string
 }
 
-// Holidays --
+// Holidays is Holiday interface slice
 type Holidays []Holiday
 
 type holiday struct {
