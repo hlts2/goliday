@@ -11,6 +11,14 @@ type evaluateOption struct {
 	day   int
 }
 
+func newEvaluateOption() *evaluateOption {
+	return &evaluateOption{
+		year:  -1,
+		month: -1,
+		day:   -1,
+	}
+}
+
 // WithYear --
 func WithYear(year int) Option {
 	return func(e *evaluateOption) {

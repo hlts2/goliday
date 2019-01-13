@@ -1391,10 +1391,33 @@ var holidays = Holidays{
 	&holiday{"2050-11-23", "水", "Wednesday", "勤労感謝の日", "Labor Thanksgiving Day"},
 }
 
-func (hds Holidays) contains(ymd string) bool {
+func (hds Holidays) contains(ops *evaluateOption) bool {
 	for _, h := range hds {
-		if h.Ymd() == ymd {
-			return true
+		exists := false
+
+		if ops.year != -1 {
+			if h.Year() != ops.year {
+				continue
+			}
+			exists = true
+		}
+
+		if ops.month != -1 {
+			if h.Month() != ops.month {
+				continue
+			}
+			exists = true
+		}
+
+		if ops.day != -1 {
+			if h.Day() != ops.day {
+				continue
+			}
+			exists = true
+		}
+
+		if exists {
+			return exists
 		}
 	}
 	return false
