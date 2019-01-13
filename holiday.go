@@ -1414,24 +1414,24 @@ func matches(year, month, day int, evalOp *evaluateOption) bool {
 	exist := false
 
 	if evalOp.year != -1 {
-		if year == evalOp.year {
-			exist = true
+		if year != evalOp.year {
+			return false
 		}
-		return false
+		exist = true
 	}
 
 	if evalOp.month != -1 {
-		if month == evalOp.month {
-			exist = true
+		if month != evalOp.month {
+			return false
 		}
-		return false
+		exist = true
 	}
 
 	if evalOp.day != -1 {
-		if day == evalOp.day {
-			exist = true
+		if day != evalOp.day {
+			return false
 		}
-		return false
+		exist = true
 	}
 
 	return exist
