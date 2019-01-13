@@ -2,6 +2,7 @@ package goliday
 
 import (
 	"testing"
+	"time"
 )
 
 func TestHolidays(t *testing.T) {
@@ -43,6 +44,15 @@ func TestHolidays(t *testing.T) {
 			expected: holidays{
 				&holiday{year: 2050, month: 2, day: 11},
 				&holiday{year: 2050, month: 8, day: 11},
+			},
+		},
+		{
+			options: []Option{WithTime(func() time.Time {
+				loc, _ := time.LoadLocation("Asia/Tokyo")
+				return time.Date(2050, 11, 23, 8, 4, 18, 0, loc)
+			}())},
+			expected: holidays{
+				&holiday{year: 2050, month: 11, day: 23},
 			},
 		},
 		{
