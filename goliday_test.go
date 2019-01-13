@@ -57,7 +57,9 @@ func TestHolidays(t *testing.T) {
 			},
 		},
 		{
-			options:  []Option{},
+			options: []Option{
+				WithYear(1),
+			},
 			expected: holidays{},
 		},
 	}
@@ -84,6 +86,52 @@ func TestHolidays(t *testing.T) {
 			if expected.Day() != holiday.Day() {
 				t.Errorf("Holidays[%d] Day is wrong. expected: %v, but: %v", i, expected.Day(), holiday.Day())
 			}
+		}
+	}
+}
+
+func TestIsHoliday(t *testing.T) {
+	tests := []struct {
+		options  []Option
+		expected bool
+	}{
+		{
+			options:  []Option{WithYear(2050)},
+			expected: true,
+		},
+		{
+			options:  []Option{WithYear(2050), WithMonth(1)},
+			expected: true,
+		},
+		{
+			options:  []Option{WithYear(2050), WithDay(11)},
+			expected: true,
+		},
+		{
+			options: []Option{WithTime(func() *time.Time {
+				loc, _ := time.LoadLocation("Asia/Tokyo")
+				t := time.Date(2050, 11, 23, 8, 4, 18, 0, loc)
+				return &t
+			}())},
+			expected: true,
+		},
+		{
+			options:  []Option{},
+			expected: false,
+		},
+		{
+			options: []Option{
+				WithYear(1),
+			},
+			expected: false,
+		},
+	}
+
+	for _, test := range tests {
+		got := IsHoliday(test.options...)
+
+		if test.expected != got {
+			t.Errorf("IsHoliday is wrong. expected: %v, got: %v", test.expected, got)
 		}
 	}
 }
