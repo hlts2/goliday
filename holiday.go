@@ -1400,6 +1400,40 @@ func (hds Holidays) contains(ymd string) bool {
 	return false
 }
 
+func (hds Holidays) holidays(ops evaluateOption) []Holiday {
+	holidays := []Holiday{}
+
+	for _, h := range hds {
+		exists := false
+
+		if ops.year != -1 {
+			if h.Year() != ops.year {
+				continue
+			}
+			exists = true
+		}
+
+		if ops.month != -1 {
+			if h.Month() != ops.month {
+				continue
+			}
+			exists = true
+		}
+
+		if ops.day != -1 {
+			if h.Day() != ops.day {
+				continue
+			}
+			exists = true
+		}
+
+		if exists {
+			holidays = append(holidays, h)
+		}
+	}
+	return holidays
+}
+
 func (hds Holidays) inMonth(year, month int) []Holiday {
 	ymstr := toString(year) + "-" + toString(month)
 
