@@ -12,7 +12,7 @@ for _, holiday := range holidays {
     fmt.Println(holiday)
 }
 
-fmt.Println(hasHoliday(WithYear(2050), WithMonth(11), WithDay(23))) // true
+fmt.Println(HasHoliday(WithYear(2050), WithMonth(11), WithDay(23))) // true
 
 ```
 
