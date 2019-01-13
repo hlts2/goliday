@@ -2,6 +2,9 @@
 
 Go library for japanese holiday
 
+## GoDoc
+https://godoc.org/github.com/hlts2/goliday_jp#Holidays
+
 ## Usage
 
 ```go
