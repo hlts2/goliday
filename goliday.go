@@ -17,5 +17,5 @@ func Holidays(ops ...Option) []Holiday {
 		op(evalOp)
 	}
 
-	return table.holidaysByEvalOption(evalOp)
+	return table.holidaysByEvaluateOption(evalOp)
 }

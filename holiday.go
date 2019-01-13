@@ -1400,7 +1400,7 @@ func (hds holidays) contains(evalOp *evaluateOption) bool {
 	return false
 }
 
-func (hds holidays) holidaysByEvalOption(evalOp *evaluateOption) []Holiday {
+func (hds holidays) holidaysByEvaluateOption(evalOp *evaluateOption) []Holiday {
 	holidays := []Holiday{}
 
 	for _, h := range hds {
