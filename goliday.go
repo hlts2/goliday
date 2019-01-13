@@ -1,6 +1,6 @@
 package goliday
 
-// IsHoliday --
+// IsHoliday returns true if option values exists
 func IsHoliday(ops ...Option) bool {
 	evalOp := newEvaluateOption()
 	for _, op := range ops {
@@ -10,7 +10,7 @@ func IsHoliday(ops ...Option) bool {
 	return table.contains(evalOp)
 }
 
-// Holidays --
+// Holidays returns Holiday slice that matches option values
 func Holidays(ops ...Option) []Holiday {
 	evalOp := newEvaluateOption()
 	for _, op := range ops {
