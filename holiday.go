@@ -1391,105 +1391,50 @@ var holidays = Holidays{
 	&holiday{"2050-11-23", "水", "Wednesday", "勤労感謝の日", "Labor Thanksgiving Day"},
 }
 
-func (hds Holidays) contains(ops *evaluateOption) bool {
+func (hds Holidays) contains(evalOp *evaluateOption) bool {
 	for _, h := range hds {
-		exists := false
-
-		if ops.year != -1 {
-			if h.Year() != ops.year {
-				continue
-			}
-			exists = true
-		}
-
-		if ops.month != -1 {
-			if h.Month() != ops.month {
-				continue
-			}
-			exists = true
-		}
-
-		if ops.day != -1 {
-			if h.Day() != ops.day {
-				continue
-			}
-			exists = true
-		}
-
-		if exists {
-			return exists
+		if exist(h.Year(), h.Month(), h.Day(), evalOp) {
+			return true
 		}
 	}
 	return false
 }
 
-func (hds Holidays) holidays(ops evaluateOption) []Holiday {
+func (hds Holidays) holidays(evalOp *evaluateOption) []Holiday {
 	holidays := []Holiday{}
 
 	for _, h := range hds {
-		exists := false
-
-		if ops.year != -1 {
-			if h.Year() != ops.year {
-				continue
-			}
-			exists = true
-		}
-
-		if ops.month != -1 {
-			if h.Month() != ops.month {
-				continue
-			}
-			exists = true
-		}
-
-		if ops.day != -1 {
-			if h.Day() != ops.day {
-				continue
-			}
-			exists = true
-		}
-
-		if exists {
+		if exist(h.Year(), h.Month(), h.Day(), evalOp) {
 			holidays = append(holidays, h)
 		}
 	}
+
 	return holidays
 }
 
-func (hds Holidays) inMonth(year, month int) []Holiday {
-	ymstr := toString(year) + "-" + toString(month)
+func exist(year, month, day int, evalOp *evaluateOption) bool {
+	exist := false
 
-	results := []Holiday{}
-	for _, h := range hds {
-		if h.Ymd()[0:len(ymstr)] == ymstr {
-			results = append(results, h)
+	if evalOp.year != -1 {
+		if year == evalOp.year {
+			exist = true
 		}
+		return false
 	}
-	return results
-}
 
-func (hds Holidays) inYear(year int) []Holiday {
-	ystr := toString(year)
-
-	results := []Holiday{}
-	for _, h := range hds {
-		if h.Ymd()[0:len(ystr)] == ystr {
-			results = append(results, h)
+	if evalOp.month != -1 {
+		if month == evalOp.month {
+			exist = true
 		}
+		return false
 	}
-	return results
-}
 
-func formatYmd(year, month, day int) string {
-	ystr, mstr, dstr := toString(year), toString(month), toString(day)
-	return ystr + "-" + mstr + "-" + dstr
-}
-
-func toString(num int) string {
-	str := strconv.Itoa(num)
-	if len(str) == 1 {
-		return "0" + str
+	if evalOp.day != -1 {
+		if day == evalOp.day {
+			exist = true
+		}
+		return false
 	}
-	return str
+
+	return exist
 }
