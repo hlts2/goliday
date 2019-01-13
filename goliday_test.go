@@ -57,9 +57,15 @@ func TestHolidays(t *testing.T) {
 			},
 		},
 		{
-			options: []Option{
-				WithYear(1),
-			},
+			options:  []Option{WithYear(1)},
+			expected: holidays{},
+		},
+		{
+			options:  []Option{WithYear(2050), WithMonth(12)},
+			expected: holidays{},
+		},
+		{
+			options:  []Option{WithYear(2050), WithDay(31)},
 			expected: holidays{},
 		},
 	}
@@ -116,13 +122,15 @@ func TestIsHoliday(t *testing.T) {
 			expected: true,
 		},
 		{
-			options:  []Option{},
+			options:  []Option{WithYear(1)},
 			expected: false,
 		},
 		{
-			options: []Option{
-				WithYear(1),
-			},
+			options:  []Option{WithYear(2050), WithMonth(12)},
+			expected: false,
+		},
+		{
+			options:  []Option{WithYear(2050), WithDay(31)},
 			expected: false,
 		},
 	}
