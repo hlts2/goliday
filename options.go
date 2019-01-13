@@ -2,7 +2,7 @@ package goliday
 
 import "time"
 
-// Option --
+// Option configures holiday search.
 type Option func(*evaluateOption)
 
 type evaluateOption struct {
@@ -19,28 +19,28 @@ func newEvaluateOption() *evaluateOption {
 	}
 }
 
-// WithYear --
+// WithYear returns an option that sets the year.
 func WithYear(year int) Option {
 	return func(e *evaluateOption) {
 		e.year = year
 	}
 }
 
-// WithMonth --
+// WithMonth returns an option that sets the month.
 func WithMonth(month int) Option {
 	return func(e *evaluateOption) {
 		e.month = month
 	}
 }
 
-// WithDay --
+// WithDay returns an option that sets the day.
 func WithDay(day int) Option {
 	return func(e *evaluateOption) {
 		e.day = day
 	}
 }
 
-// WithTime --
+// WithTime returns an option that sets the year and month and day from time.Time instance.
 func WithTime(t *time.Time) Option {
 	return func(e *evaluateOption) {
 		e.year = t.Year()
