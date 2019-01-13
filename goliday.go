@@ -1,11 +1,11 @@
 package goliday
 
-// IsHoliday returns true if there is a holiday set as an option.
+// IsHoliday returns true if the option values exists within the holiday.
 func IsHoliday(ops ...Option) bool {
 	return table.contains(evaluatedOption(ops...))
 }
 
-// Holidays returns Holiday slice that matches option values.
+// Holidays returns Holiday slice that matches options.
 func Holidays(ops ...Option) []Holiday {
 	return table.holidaysByEvaluateOption(evaluatedOption(ops...))
 }
