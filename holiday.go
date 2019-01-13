@@ -1391,7 +1391,7 @@ var table = holidays{
 
 func (hds holidays) contains(evalOp *evaluateOption) bool {
 	for _, h := range hds {
-		if exist(h.Year(), h.Month(), h.Day(), evalOp) {
+		if matches(h.Year(), h.Month(), h.Day(), evalOp) {
 			return true
 		}
 	}
@@ -1402,7 +1402,7 @@ func (hds holidays) holidaysByEvaluateOption(evalOp *evaluateOption) []Holiday {
 	holidays := []Holiday{}
 
 	for _, h := range hds {
-		if exist(h.Year(), h.Month(), h.Day(), evalOp) {
+		if matches(h.Year(), h.Month(), h.Day(), evalOp) {
 			holidays = append(holidays, h)
 		}
 	}
@@ -1410,7 +1410,7 @@ func (hds holidays) holidaysByEvaluateOption(evalOp *evaluateOption) []Holiday {
 	return holidays
 }
 
-func exist(year, month, day int, evalOp *evaluateOption) bool {
+func matches(year, month, day int, evalOp *evaluateOption) bool {
 	exist := false
 
 	if evalOp.year != -1 {
