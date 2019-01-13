@@ -125,6 +125,14 @@ func TestIsHoliday(t *testing.T) {
 			},
 			expected: false,
 		},
+		{
+			options:  []Option{WithYear(2050), WithMonth(12)},
+			expected: false,
+		},
+		{
+			options:  []Option{WithYear(2050), WithDay(30)},
+			expected: false,
+		},
 	}
 
 	for _, test := range tests {
