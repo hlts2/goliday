@@ -1,7 +1,7 @@
 package goliday
 
-// IsHoliday returns true if the option values exists within the holiday.
-func IsHoliday(ops ...Option) bool {
+// HasHoliday returns true if the option values exists within the holiday.
+func HasHoliday(ops ...Option) bool {
 	return table.contains(evaluatedOption(ops...))
 }
 

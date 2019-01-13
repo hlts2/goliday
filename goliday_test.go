@@ -96,7 +96,7 @@ func TestHolidays(t *testing.T) {
 	}
 }
 
-func TestIsHoliday(t *testing.T) {
+func TestHasHolidays(t *testing.T) {
 	tests := []struct {
 		options  []Option
 		expected bool
@@ -136,7 +136,7 @@ func TestIsHoliday(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		got := IsHoliday(test.options...)
+		got := HasHoliday(test.options...)
 
 		if test.expected != got {
 			t.Errorf("IsHoliday is wrong. expected: %v, got: %v", test.expected, got)
