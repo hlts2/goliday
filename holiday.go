@@ -32,8 +32,8 @@ type Holiday interface {
 	NameEn() string
 }
 
-// Holidays is Holiday interface slice
-type Holidays []Holiday
+// holidays is Holiday interface slice
+type holidays []Holiday
 
 type holiday struct {
 	ymd    string
@@ -64,7 +64,7 @@ func (h *holiday) WeekEn() string { return h.weekEn }
 func (h *holiday) Name() string   { return h.name }
 func (h *holiday) NameEn() string { return h.nameEn }
 
-var holidays = Holidays{
+var table = holidays{
 	&holiday{"1970-01-01", "木", "Thursday", "元日", "New Year's Day"},
 	&holiday{"1970-01-15", "木", "Thursday", "成人の日", "Coming of Age Day"},
 	&holiday{"1970-02-11", "水", "Wednesday", "建国記念の日", "National Foundation Day"},
@@ -1391,7 +1391,7 @@ var holidays = Holidays{
 	&holiday{"2050-11-23", "水", "Wednesday", "勤労感謝の日", "Labor Thanksgiving Day"},
 }
 
-func (hds Holidays) contains(evalOp *evaluateOption) bool {
+func (hds holidays) contains(evalOp *evaluateOption) bool {
 	for _, h := range hds {
 		if exist(h.Year(), h.Month(), h.Day(), evalOp) {
 			return true
@@ -1400,7 +1400,7 @@ func (hds Holidays) contains(evalOp *evaluateOption) bool {
 	return false
 }
 
-func (hds Holidays) holidays(evalOp *evaluateOption) []Holiday {
+func (hds holidays) holidaysByEvalOption(evalOp *evaluateOption) []Holiday {
 	holidays := []Holiday{}
 
 	for _, h := range hds {
