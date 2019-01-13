@@ -47,9 +47,10 @@ func TestHolidays(t *testing.T) {
 			},
 		},
 		{
-			options: []Option{WithTime(func() time.Time {
+			options: []Option{WithTime(func() *time.Time {
 				loc, _ := time.LoadLocation("Asia/Tokyo")
-				return time.Date(2050, 11, 23, 8, 4, 18, 0, loc)
+				t := time.Date(2050, 11, 23, 8, 4, 18, 0, loc)
+				return &t
 			}())},
 			expected: holidays{
 				&holiday{year: 2050, month: 11, day: 23},

@@ -41,7 +41,7 @@ func WithDay(day int) Option {
 }
 
 // WithTime returns an option that sets the year and month and day from time.Time instance.
-func WithTime(t time.Time) Option {
+func WithTime(t *time.Time) Option {
 	return func(e *evaluateOption) {
 		e.year = t.Year()
 		e.month = int(t.Month())
