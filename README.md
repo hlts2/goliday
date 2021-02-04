@@ -1,4 +1,4 @@
-# goliday_jp [![GoDoc](http://godoc.org/github.com/hlts2/goliday_jp?status.svg)](http://godoc.org/github.com/hlts2/goliday_jp)
+# goliday [![GoDoc](http://godoc.org/github.com/hlts2/goliday?status.svg)](http://godoc.org/github.com/hlts2/goliday)
 
 Go library for japanese holiday
 
