@@ -11,7 +11,7 @@ package main
 import (
         "fmt"
 
-        goliday "github.com/hlts2/goliday_jp"
+        "github.com/hlts2/goliday"
 )
 
 func main() {
