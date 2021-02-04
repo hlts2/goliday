@@ -1,3 +1,3 @@
-module github.com/hlts2/goliday_jp
+module github.com/hlts2/goliday
 
 go 1.15
